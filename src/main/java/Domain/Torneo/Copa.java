@@ -1,3 +1,5 @@
+package Domain.Torneo;
+
 public class Liga extends Torneo {
 
     private TipoDeCopa tipoDeCopa;
