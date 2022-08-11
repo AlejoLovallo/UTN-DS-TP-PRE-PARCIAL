@@ -1,5 +1,5 @@
-public class Entrenador extends Empleado {
+package Domain.Empleado;
 
-    public clone();
+public class Entrenador extends Empleado {
 
 }

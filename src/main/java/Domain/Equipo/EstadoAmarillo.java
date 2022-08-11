@@ -1,5 +1,4 @@
-public abstract class Estado {
-    public void modificarEntrenamiento(Equipo){
-        
-    }
+package Domain.Equipo;
+
+public class EstadoAmarillo {
 }

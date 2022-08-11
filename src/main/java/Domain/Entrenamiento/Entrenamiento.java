@@ -1,6 +1,10 @@
+package Domain.Entrenamiento;
+
+import java.util.ArrayList;
+
 public class Entrenamiento{
     
     private TipoDeEntrenamiento tipoDeEntrenamiento;
-    private List <Ejercicio> ejercicios;
-    
+    private ArrayList<Ejercicio> ejercicios;
+
 }
