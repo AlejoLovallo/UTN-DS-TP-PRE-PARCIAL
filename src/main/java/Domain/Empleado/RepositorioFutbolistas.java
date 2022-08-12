@@ -28,4 +28,8 @@ public class RepositorioFutbolistas {
   public void registrarFutbolista(Futbolista futbolista){
       this.futbolistas.add(futbolista);
   }
+
+  public void buscarInformacionFutbolistas(){
+      // TODO
+  }
 }

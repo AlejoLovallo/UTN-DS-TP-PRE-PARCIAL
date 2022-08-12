@@ -1,4 +1,5 @@
 package Domain.Entrenamiento;
+
 public class Ejercicio {
 
     private String nombre;
