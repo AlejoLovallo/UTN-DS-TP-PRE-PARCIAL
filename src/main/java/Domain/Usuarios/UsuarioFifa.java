@@ -1,23 +1,26 @@
 package Domain.Usuarios;
 
+import Domain.Torneo.*;
+
 
 public class UsuarioFifa extends Usuario {
-  //////////////////////////////////  VARIABLES
+  
   private RepositorioTorneos repositorioTorneos;
 
-  //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
+
   public UsuarioFifa(String username, String email, String contra, boolean validado) {
     super(username, email, contra, validado);
   }
 
 
-  //////////////////////////////////  GETTERS
+  // GETTERS
 
 
-  //////////////////////////////////  SETTERS
+  // SETTERS
 
 
-  //////////////////////////////////  INTERFACE
+  // METHODS
 
   public void registrarTorneo(Torneo torneo){
     this.repositorioTorneos.registrarTorneo(torneo);

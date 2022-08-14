@@ -7,5 +7,11 @@ public class ConComida extends EntradaDecorator{
     public ConComida (Entrada entrada){
         super(entrada);
     }
+
+    // METHODS
+
+    public void accederRestaurante(){
+        
+    }
     
 }

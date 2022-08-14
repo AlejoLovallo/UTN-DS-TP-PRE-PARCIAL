@@ -7,7 +7,7 @@ public class RepositorioEntrenadores {
   private static RepositorioEntrenadores instance = null;
   private ArrayList<Entrenador> entrenadores;
 
-  // CONSTRUCTOR
+  // CONSTRUCTORES
 
   private RepositorioEntrenadores(){
       this.entrenadores = new ArrayList<>();

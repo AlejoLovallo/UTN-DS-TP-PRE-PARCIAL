@@ -1,23 +1,26 @@
 package Domain.Usuarios;
 
+import Domain.Entrenamiento.*;
 
 public class Admin extends Usuario {
-  //////////////////////////////////  VARIABLES
+  
   private RepositorioEjercicios repositorioEjercicios;
 
-  //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
+  
   public Admin(String username, String email, String contra, boolean validado) {
     super(username, email, contra, validado);
   }
 
 
-  //////////////////////////////////  GETTERS
+  // GETTERS
 
 
-  //////////////////////////////////  SETTERS
+  // SETTERS
 
 
-  //////////////////////////////////  INTERFACE
+  // METHODS
+
   public boolean validarUsuario(Usuario userDeAlta, boolean validacion){
     return RepositorioUsuarios.getInstance().validarUsuario(userDeAlta,validacion);
   }

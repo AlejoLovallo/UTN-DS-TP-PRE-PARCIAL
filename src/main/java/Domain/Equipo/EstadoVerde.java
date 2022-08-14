@@ -1,6 +1,5 @@
 package Domain.Equipo;
 
-import Domain.Entrenamiento.*;;
 
 public class EstadoVerde extends Estado {
 

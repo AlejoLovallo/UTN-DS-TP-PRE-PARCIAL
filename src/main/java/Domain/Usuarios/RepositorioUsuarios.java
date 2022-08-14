@@ -20,12 +20,13 @@ import Domain.Usuarios.Excepciones.UsuarioException;
 import java.util.ArrayList;
 
 public class RepositorioUsuarios {
-  //////////////////////////////////  VARIABLES
+
   private static RepositorioUsuarios instance = null;
   private ArrayList<Usuario> usuarios;
 
 
-  //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
+  
   private RepositorioUsuarios(){
     //todo traer todos los usuarios de la DB
     this.usuarios = new ArrayList<>();
@@ -38,14 +39,16 @@ public class RepositorioUsuarios {
     return instance;
   }
 
-  //////////////////////////////////  GETTERS
+  // GETTERS
+
   public ArrayList<Usuario> getUsuarios() {
     return usuarios;
   }
 
-  //////////////////////////////////  SETTERS
+  // SETTERS
 
-  //////////////////////////////////  INTERFACE
+  // METHODS
+
   public boolean validarUsuario(Usuario usuario, Boolean validacion){
     Usuario usuarioAValidar = this.usuarios.stream().filter(u -> u.equals(usuario)).findFirst().orElse(null);
     if(usuarioAValidar == null){

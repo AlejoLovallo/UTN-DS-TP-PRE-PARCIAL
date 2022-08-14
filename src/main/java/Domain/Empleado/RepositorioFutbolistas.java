@@ -7,7 +7,8 @@ public class RepositorioFutbolistas {
   private static RepositorioFutbolistas instance = null;
   private ArrayList<Futbolista> futbolistas;
 
-  // CONSTRUCTOR
+  // CONSTRUCTORES
+  
   private RepositorioFutbolistas(){
       this.futbolistas = new ArrayList<>();
   }
@@ -41,5 +42,5 @@ public class RepositorioFutbolistas {
   public void buscarInformacionFutbolistas(){
       // TODO
   }
-  
+
 }

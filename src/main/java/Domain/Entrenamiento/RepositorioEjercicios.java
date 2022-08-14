@@ -8,6 +8,7 @@ public class RepositorioEjercicios {
   private ArrayList<Ejercicio> ejercicios;
 
   // CONSTRUCTORES
+  
   private RepositorioEjercicios(){
       this.ejercicios = new ArrayList<>();
   }
@@ -29,8 +30,7 @@ public class RepositorioEjercicios {
   public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
     this.ejercicios = ejercicios;
   }
-  
-  
+   
   // METHODS
 
   public void registrarEjercicio(Ejercicio ejercicio){

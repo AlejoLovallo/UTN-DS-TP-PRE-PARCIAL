@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 public abstract class Usuario {
-  //////////////////////////////////  VARIABLES
+
   private final String salt = "+@351";
   private String contraHasheada;
   private String username;
@@ -16,10 +16,10 @@ public abstract class Usuario {
   private UltimoIntento ultimoAcceso;
   private Boolean validado;
   private ArrayList<CriterioValidacion> validadoresContrasenia;
-  //private Contacto contacto;
+  
 
 
-  //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
   public Usuario(String username,String email,String contra,boolean validado) {
     if(!isContraseniaValida(contra)){
       throw new ContraseniaEsInvalidaException("no pasa por alguna de las validaciones de seguridad");

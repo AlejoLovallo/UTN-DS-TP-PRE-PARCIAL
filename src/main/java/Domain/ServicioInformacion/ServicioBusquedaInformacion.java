@@ -1,4 +1,4 @@
-package Domain.ServicioBusquedaInformacion;
+package Domain.ServicioInformacion;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

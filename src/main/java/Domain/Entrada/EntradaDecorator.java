@@ -12,7 +12,7 @@ public abstract class EntradaDecorator implements Entrada {
 
     // METHODS
 
-    public void ingresarAlEstadio(){
+    public void accederEstadio(){
 
     }
 

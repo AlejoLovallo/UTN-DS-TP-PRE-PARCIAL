@@ -1,9 +1,11 @@
 package Domain.Empleado;
 
-import Domain.Entrenamiento.Entrenamiento;
+import Domain.Entrenamiento.*;
+import Domain.Equipo.Observer;
 import java.util.ArrayList;
 
-public class Futbolista extends Empleado {
+
+public class Futbolista extends Empleado implements Observer {
 
     private Double altura;
     private Double peso;
@@ -51,4 +53,11 @@ public class Futbolista extends Empleado {
         this.entrenamientosPersonales.add(_entrenamiento);
     }
     
+    public void update(){
+        for (Entrenamiento entrenamiento : this.getEntrenamientosPersonales()){
+            for (Ejercicio ejercicio : entrenamiento.getEjercicios()){
+                ejercicio.aumentarDuracionEjercicio(5.0);
+            }
+        };
+    }
 }

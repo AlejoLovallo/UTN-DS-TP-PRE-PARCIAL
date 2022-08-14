@@ -1,6 +1,7 @@
-public class Observer {
-    
-    public void modificarEntrenamientoFutbolista(Futbolista){
+package Domain.Equipo;
 
-    }
+public interface Observer {
+    
+    public void update();
+
 }

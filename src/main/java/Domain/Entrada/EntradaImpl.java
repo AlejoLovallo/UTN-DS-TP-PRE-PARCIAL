@@ -2,7 +2,7 @@ package Domain.Entrada;
 
 public class EntradaImpl implements Entrada {
 
-    public void ingresarAlEstadio(){
+    public void accederEstadio(){
 
     }
     

@@ -12,6 +12,7 @@ public class Equipo {
     private ArrayList<Entrenamiento> entrenamientos;
     private Estado estado;
     private Usuario usuario;
+    private ArrayList <Observer> observers;
 
     // CONSTRUCTOR
 
@@ -56,6 +57,10 @@ public class Equipo {
         return usuario;
     }
 
+    public ArrayList<Observer> getObservers() {
+        return observers;
+    }
+    
     // SETTERS    
 
     public void setNombre(String nombre) {
@@ -89,10 +94,23 @@ public class Equipo {
     // METHODS
 
     public void crearEmpleado(Empleado empleado){
-
+        // Clone
     }
 
     public void cargarPlantel (ArrayList <Futbolista> futbolistas){
+        // Clone
+    }
+
+    public ArrayList <Futbolista> getFutbolistas(){
+        ArrayList <Futbolista> futbolistas = new ArrayList<>();
+
+        for (Empleado empleado : this.getEmpleados()){
+            if (empleado instanceof Futbolista){
+                futbolistas.add((Futbolista) empleado);
+            }
+        }
+        
+        return futbolistas;
 
     }
 
@@ -104,8 +122,22 @@ public class Equipo {
 
     }
 
+    public void addObserver(Observer obj) {
+        if(obj == null)
+         throw new NullPointerException("Null Observer");
+		if(!observers.contains(obj))
+         observers.add(obj);
+    }
+
+    public void removeObserver(Observer obj) {
+        observers.remove(obj);
+    }
+
     public void notificarObserver(){
-        
+
+		for (Observer obj : this.getObservers()) {
+			obj.update();
+		}
     }
 
     

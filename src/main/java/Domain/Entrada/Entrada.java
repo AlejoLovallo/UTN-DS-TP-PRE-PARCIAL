@@ -7,7 +7,7 @@ public interface Entrada {
     public String sector;
     public int asiento;
 
-    public void ingresarAlEstadio();
+    public void accederEstadio();
 
 
 

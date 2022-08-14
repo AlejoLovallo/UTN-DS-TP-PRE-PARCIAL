@@ -1,11 +1,14 @@
 package Domain.Torneo;
 
+import java.util.ArrayList;
+
 public class RepositorioTorneos {
-    //////////////////////////////////  VARIABLES
+
   private static RepositorioTorneos instance = null;
   private ArrayList<Torneo> torneos;
 
-    //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
+
   private RepositorioTorneos(){
       this.torneos = new ArrayList<>();
   }
@@ -16,16 +19,22 @@ public class RepositorioTorneos {
       }
       return instance;
   }
-    //////////////////////////////////  GETTERS
+  // GETTERS
+
   public ArrayList<Torneo> getTorneos() {
     return this.torneos;
-}
+  }
 
-    //////////////////////////////////  SETTERS
+  // SETTERS
 
-    //////////////////////////////////  INTERFACE
+  public void setTorneos(ArrayList<Torneo> torneos) {
+    this.torneos = torneos;
+  }
+
+  // METHODS
 
   public void registrarTorneo(Torneo torneo){
       this.torneos.add(torneo);
   }
+
 }
