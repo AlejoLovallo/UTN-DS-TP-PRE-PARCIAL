@@ -9,6 +9,8 @@ public abstract class Empleado implements Cloneable{
     private Integer edad;
     private Equipo equipo;
 
+    // CONSTRUCTOR
+
     public Object clone() {
         Object clone = null;
 
@@ -21,5 +23,55 @@ public abstract class Empleado implements Cloneable{
 
         return clone;
     }
+
+    // GETTERS
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    // SETTERS
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    // METHODS
+
+    
+
+    
 
 }

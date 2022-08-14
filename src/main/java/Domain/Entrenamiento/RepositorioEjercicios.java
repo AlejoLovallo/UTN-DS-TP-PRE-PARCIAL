@@ -1,11 +1,13 @@
 package Domain.Entrenamiento;
 
+import java.util.ArrayList;
+
 public class RepositorioEjercicios {
-    //////////////////////////////////  VARIABLES
+
   private static RepositorioEjercicios instance = null;
   private ArrayList<Ejercicio> ejercicios;
 
-    //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTORES
   private RepositorioEjercicios(){
       this.ejercicios = new ArrayList<>();
   }
@@ -16,16 +18,23 @@ public class RepositorioEjercicios {
       }
       return instance;
   }
-    //////////////////////////////////  GETTERS
+  // GETTERS
+
   public ArrayList<Ejercicio> getEjercicios() {
     return ejercicios;
-}
+  }
 
-    //////////////////////////////////  SETTERS
+  // SETTERS
 
-    //////////////////////////////////  INTERFACE
+  public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
+    this.ejercicios = ejercicios;
+  }
+  
+  
+  // METHODS
 
   public void registrarEjercicio(Ejercicio ejercicio){
       this.ejercicios.add(ejercicio);
   }
+
 }

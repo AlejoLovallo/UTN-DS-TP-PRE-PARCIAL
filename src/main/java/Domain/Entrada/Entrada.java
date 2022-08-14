@@ -1,9 +1,14 @@
 package Domain.Entrada;
 
-public class Entrada {
+public interface Entrada {
 
-    private Double precio;
-    private String platea;
-    private String sector;
-    private Integrer asiento;
+    public Double precio;
+    public String platea;
+    public String sector;
+    public int asiento;
+
+    public void ingresarAlEstadio();
+
+
+
 }

@@ -1,11 +1,14 @@
 package Domain.Empleado;
 
+import java.util.ArrayList;
+
 public class RepositorioEntrenadores {
-    //////////////////////////////////  VARIABLES
+
   private static RepositorioEntrenadores instance = null;
   private ArrayList<Entrenador> entrenadores;
 
-    //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTOR
+
   private RepositorioEntrenadores(){
       this.entrenadores = new ArrayList<>();
   }
@@ -16,14 +19,20 @@ public class RepositorioEntrenadores {
       }
       return instance;
   }
-    //////////////////////////////////  GETTERS
+  
+  // GETTERS
+
   public ArrayList<Entrenador> getEntrenadores() {
     return entrenadores;
-}
+  }
 
-    //////////////////////////////////  SETTERS
+  // SETTERS
 
-    //////////////////////////////////  INTERFACE
+  public void setEntrenadores(ArrayList<Entrenador> entrenadores) {
+    this.entrenadores = entrenadores;
+  }
+
+  // METHODS
 
   public void registrarEntrenador(Entrenador entrenador){
       this.entrenadores.add(entrenador);

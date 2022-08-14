@@ -1,11 +1,13 @@
 package Domain.Empleado;
 
+import java.util.ArrayList;
+
 public class RepositorioFutbolistas {
-    //////////////////////////////////  VARIABLES
+
   private static RepositorioFutbolistas instance = null;
   private ArrayList<Futbolista> futbolistas;
 
-    //////////////////////////////////  CONSTRUCTORES
+  // CONSTRUCTOR
   private RepositorioFutbolistas(){
       this.futbolistas = new ArrayList<>();
   }
@@ -16,14 +18,21 @@ public class RepositorioFutbolistas {
       }
       return instance;
   }
-    //////////////////////////////////  GETTERS
+
+  // GETTERS
+
   public ArrayList<Futbolista> getFutbolistas() {
     return futbolistas;
-}
+  }
 
-    //////////////////////////////////  SETTERS
+  // SETTERS
 
-    //////////////////////////////////  INTERFACE
+  public void setFutbolistas(ArrayList<Futbolista> futbolistas) {
+    this.futbolistas = futbolistas;
+  }
+  
+
+  // MERHODS
 
   public void registrarFutbolista(Futbolista futbolista){
       this.futbolistas.add(futbolista);
@@ -32,4 +41,5 @@ public class RepositorioFutbolistas {
   public void buscarInformacionFutbolistas(){
       // TODO
   }
+  
 }
