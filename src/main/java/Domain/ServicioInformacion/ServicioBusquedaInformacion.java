@@ -1,14 +1,14 @@
-package Domain.BuscadorDeInformacion;
+package Domain.ServicioBusquedaInformacion;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 
-public abstract class BuscadorDeInformacion {
+public abstract class ServicioBusquedaInformacion {
   private static String apiKey;
   private Retrofit retrofit;
 
-  public BuscadorDeInformacion(String _url){
+  public ServicioBusquedaInformacion(String _url){
       this.retrofit = new Retrofit.Builder()
           .baseUrl(_url)
           .addConverterFactory(GsonConverterFactory.create())
