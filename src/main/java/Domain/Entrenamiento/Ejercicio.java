@@ -1,15 +1,23 @@
 package Domain.Entrenamiento;
 
-public class Ejercicio {
+import Domain.BaseDeDatos.EntidadPersistente;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Ejercicio")
+public class Ejercicio extends EntidadPersistente {
+
+    @Column
     private String nombre;
+
+    @Column
     private Double duracion;
 
     // CONSTRUCTOR
-
-    public Ejercicio(String nombre, Double duracion) {
-        this.nombre = nombre;
-        this.duracion = duracion;
+    public Ejercicio() {
     }
 
     // GETTERS
