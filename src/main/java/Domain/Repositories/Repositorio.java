@@ -22,28 +22,23 @@ public class Repositorio<T> {
   }
 
   public void modificar(Object unObjeto){
-    if(!unObjeto.getClass().getSimpleName().equalsIgnoreCase("bitacora") ) {
-      System.out.println("ENTRE A LA MODIFICACION ");
-      this.dao.modificar(unObjeto);
-      this.guardadorDeLog.GuardarEnBitacora(unObjeto, "MODIFICACION");
-    }
+    this.handler.modificar(unObjeto);
   }
 
   public void eliminar(Object unObjeto){
-    this.dao.eliminar(unObjeto);
-    this.guardadorDeLog.GuardarEnBitacora(unObjeto, "BAJA");
+    this.handler.eliminar(unObjeto);
   }
 
   public List<T> buscarTodos(){
-    return this.dao.buscarTodos();
+    return this.handler.buscarTodos();
   }
 
   public List<T> buscarTodosPorQuery(String query){
-    return this.dao.buscarTodosPorQuery(query);
+    return this.handler.buscarTodosPorQuery(query);
   }
 
   public T buscar(int id){
-    return this.dao.buscar(id);
+    return this.handler.buscar(id);
   }
 
   public CriteriaBuilder criteriaBuilder(){

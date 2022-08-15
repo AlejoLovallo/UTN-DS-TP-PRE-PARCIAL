@@ -1,8 +1,7 @@
 package Domain.Repositories.Factories;
 
-import Repositories.Repositorio;
-import Repositories.daos.*;
-import Repositories.testMemoData.Data;
+import Domain.Repositories.Repositorio;
+import Domain.Repositories.Handlers.*;
 
 import java.util.HashMap;
 
@@ -19,16 +18,9 @@ public class RepositorioFactory {
       repo = repos.get(type.getName());
     }
     else{
-      if(Config.useDataBase){
-        DAO<T> dao = new DAOHibernate<>(type);
+        DbHandler<T> dao = new HibernateHandler<>(type);
         repo = new Repositorio<>(dao);
-      }
-      else{
-        DAOMemoria<T> daoMemoria = new DAOMemoria<>(Data.getData(type));
-        repo = new Repositorio<>(daoMemoria);
-
-      }
-      repos.put(type.toString(), repo);
+        repos.put(type.toString(), repo);
     }
     return repo;
   }
