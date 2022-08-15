@@ -90,6 +90,7 @@ public class Equipo extends EntidadPersistente {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+        notificarObservers();
     }
 
     public void setUsuario(Usuario usuario) {
@@ -136,19 +137,18 @@ public class Equipo extends EntidadPersistente {
     public void addObserver(Observer obj) {
         if(obj == null)
          throw new NullPointerException("Null Observer");
-		if(!observers.contains(obj))
-         observers.add(obj);
+		    if(!observers.contains(obj))
+             observers.add(obj);
     }
 
     public void removeObserver(Observer obj) {
         observers.remove(obj);
     }
 
-    public void notificarObserver(){
-
-		for (Observer obj : this.getObservers()) {
-			obj.update();
-		}
+    public void notificarObservers(){
+		    for (Observer obj : this.getObservers()) {
+			      obj.update();
+		    }
     }
 
     
