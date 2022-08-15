@@ -1,7 +1,10 @@
 package Domain.ServicioInformacion;
 
 import Domain.ServicioInformacion.Endpoints.Api;
+import Domain.ServicioInformacion.Endpoints.EquipoStat.*;
+import Domain.ServicioInformacion.Endpoints.Equipos.TeamsResponse;
 import Domain.ServicioInformacion.Endpoints.Equipos.EquipoResponse;
+import Domain.ServicioInformacion.Endpoints.Equipos.ListadoEquipos;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -16,22 +19,65 @@ public class ServicioEquipo extends ServicioBusquedaInformacion{
 
   @Override
   public void buscarInformacion() throws IOException {
-    System.out.println("1");
     Api apiService = this.servicioApi.getRetrofit().create(Api.class);
-    System.out.println("2");
-    Call<EquipoResponse> request = apiService.equipos(this.servicioApi.getApiKey(),"39","2021","England");
-    System.out.println("3");
-    Response<EquipoResponse> response = request.execute();
-    EquipoResponse e = response.body();
-    System.out.println(e.getGet());
-    System.out.println(e.getErrors());
-    System.out.println(e.getParameters());
-    System.out.println(e.getResults());
-    System.out.println(e.getResponse());
-    System.out.println("4");
-    System.out.println("IT IS FUCKING WORKING");
-    System.out.println(response.toString());
+    
+    Call<TeamsResponse> requestEngland = apiService.equipos(this.servicioApi.getApiKey(),"39","2021","England");
+    Call<TeamsResponse> requestItaly = apiService.equipos(this.servicioApi.getApiKey(),"135","2021","Italy");
+    Response<TeamsResponse> responseEngland = requestEngland.execute();
+    Response<TeamsResponse> responseItaly = requestItaly.execute();
+
+    TeamsResponse equiposIngleses = responseEngland.body();
+    TeamsResponse equiposItalianos = responseItaly.body();
+
+    assert equiposIngleses != null;
+    List<EquipoResponse> equiposEng = equiposIngleses.getResponse();
+    ListadoEquipos listadoEquiposIngleses = ListadoEquipos.getInstance();
+    listadoEquiposIngleses.setEquipos(equiposEng);
+    listadoEquiposIngleses.printEquipos();
+
+    equiposEng.forEach((unEquipo -> {
+
+    }));
+
+    System.out.println("--------------------------------------");
+
+    assert equiposItalianos != null;
+    List<EquipoResponse> equiposIta = equiposItalianos.getResponse();
+    ListadoEquipos listadoEquiposItalianos = ListadoEquipos.getInstance();
+    listadoEquiposItalianos.setEquipos(equiposIta);
+    listadoEquiposItalianos.printEquipos();
+
+  }
+
+  public void buscarInfoEquipo(String _idEquipo) throws IOException{
+    Api apiService = this.servicioApi.getRetrofit().create(Api.class);
+
+    Call<EquipoStatResponse> request = apiService.estadisticaEquipo(this.servicioApi.getApiKey(),"33","2021","39");
+    Response<EquipoStatResponse> response = request.execute();
+
+    System.out.println(response.body().getResults());
     System.out.println(response.body());
+    TeamResponse equipoRes = response.body().getResponse();
+
+    assert equipoRes != null;
+
+    System.out.println("---- 1 ----");
+    System.out.println(equipoRes);
+    System.out.println();
+
+    System.out.println(equipoRes.getTeam().getName());
+
+    Wins ganados = equipoRes.getFixtures().getWins();
+    Draws empatados = equipoRes.getFixtures().getDraws();
+    Loses perdidos = equipoRes.getFixtures().getLoses();
+
+    System.out.println(ganados.toString());
+    System.out.println(empatados.toString());
+    System.out.println(perdidos.toString());
+
+    System.out.println("--------------------------------------");
+
+
   }
 
   public static void main(String[] args) throws IOException {
@@ -39,6 +85,11 @@ public class ServicioEquipo extends ServicioBusquedaInformacion{
     System.out.println("------- STARTING HERE -----");
     s.buscarInformacion();
     System.out.println("------- ENDING HERE --------");
+
+    s.buscarInfoEquipo();
+
+    System.out.println("----");
+
   }
 
 }

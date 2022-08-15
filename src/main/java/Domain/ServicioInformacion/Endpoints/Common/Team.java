@@ -1,4 +1,4 @@
-package Domain.ServicioInformacion.Endpoints.Equipos;
+package Domain.ServicioInformacion.Endpoints.Common;
 
 public class Team {
   private Integer id;
@@ -63,6 +63,19 @@ public class Team {
 
   public void setLogo(String logo) {
     this.logo = logo;
+  }
+
+  @Override
+  public String toString() {
+    return "Team{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", code='" + code + '\'' +
+        ", country='" + country + '\'' +
+        ", founded=" + founded +
+        ", national=" + national +
+        ", logo='" + logo + '\'' +
+        '}';
   }
 
 }

@@ -1,4 +1,4 @@
-package Domain.ServicioInformacion.Endpoints.Equipos;
+package Domain.ServicioInformacion.Endpoints.Common;
 
 public class Paging {
   private Integer current;

@@ -1,60 +1,24 @@
 package Domain.ServicioInformacion.Endpoints.Equipos;
 
-import java.util.List;
+import Domain.ServicioInformacion.Endpoints.Common.Team;
 
 public class EquipoResponse {
-  private String get;
-  private Parameters parameters;
-  private List<Object> errors = null;
-  private Integer results;
-  private Paging paging;
-  private List<Response> response = null;
+  private Team team;
+  private Venue venue;
 
-  public String getGet() {
-    return get;
+  public Team getTeam() {
+    return team;
   }
 
-  public void setGet(String get) {
-    this.get = get;
+  public void setTeam(Team team) {
+    this.team = team;
   }
 
-  public Parameters getParameters() {
-    return parameters;
+  public Venue getVenue() {
+    return venue;
   }
 
-  public void setParameters(Parameters parameters) {
-    this.parameters = parameters;
-  }
-
-  public List<Object> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<Object> errors) {
-    this.errors = errors;
-  }
-
-  public Integer getResults() {
-    return results;
-  }
-
-  public void setResults(Integer results) {
-    this.results = results;
-  }
-
-  public Paging getPaging() {
-    return paging;
-  }
-
-  public void setPaging(Paging paging) {
-    this.paging = paging;
-  }
-
-  public List<Response> getResponse() {
-    return response;
-  }
-
-  public void setResponse(List<Response> response) {
-    this.response = response;
+  public void setVenue(Venue venue) {
+    this.venue = venue;
   }
 }

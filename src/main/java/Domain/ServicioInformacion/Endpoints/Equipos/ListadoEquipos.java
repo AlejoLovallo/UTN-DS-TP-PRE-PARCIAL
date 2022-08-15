@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class ListadoEquipos {
   private static ListadoEquipos instance = null;
-  /**public List<Equipo> equipos;
+  public List<EquipoResponse> equipos;
 
   public static ListadoEquipos getInstance(){
     if(instance == null){
@@ -14,25 +14,28 @@ public class ListadoEquipos {
     return instance;
   }
 
-  public Optional<Equipo> getEquipoById(String id){
+  public Optional<EquipoResponse> getEquipoById(String id){
     return  this.equipos.stream()
-        .filter(unEquipo -> unEquipo.getId().equals(id))
+        .filter(unEquipo -> unEquipo.getTeam().getId().equals(id))
             .findFirst();
   }
 
-  public Optional<Equipo> getEquipoByName(String name){
+  public Optional<EquipoResponse> getEquipoByName(String name){
     return this.equipos.stream()
-        .filter(unEquipo -> unEquipo.getName().equals(name))
+        .filter(unEquipo -> unEquipo.getTeam().getName().equals(name))
         .findFirst();
   }
 
-
-  public void setEquipos(List<Equipo> equipos){
+  public void setEquipos(List<EquipoResponse> equipos){
     this.equipos = equipos;
   }
 
-  public List<Equipo> getEquipos(){
+  public List<EquipoResponse> getEquipos(){
     return equipos;
-  }**/
+  }
+
+  public void printEquipos(){
+    equipos.forEach((unEquipo-> System.out.println(unEquipo.getTeam().toString())));
+  }
 
 }
