@@ -1,6 +1,7 @@
 package Domain.Repositories.Handlers;
 
 import Domain.BaseDeDatos.EntityManagerHelper;
+import Domain.Repositories.BusquedaCondicional;
 import Domain.Repositories.Handlers.DbHandler;
 
 import javax.persistence.NoResultException;
@@ -28,6 +29,18 @@ public class HibernateHandler<T> implements DbHandler<T> {
   @Override
   public T buscar(int id) {
     return EntityManagerHelper.getEntityManager().find(type, id);
+  }
+
+  @Override
+  public T buscar(BusquedaCondicional condicional) {
+    try {
+      return (T) EntityManagerHelper.getEntityManager()
+          .createQuery(condicional.getCondicionCritero())
+          .getSingleResult();
+    }
+    catch (NoResultException ex){
+      return null;
+    }
   }
 
   public List<T> buscarTodosPorQuery(String query) {

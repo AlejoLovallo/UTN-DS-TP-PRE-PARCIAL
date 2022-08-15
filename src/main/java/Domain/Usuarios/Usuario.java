@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 
-public abstract class Usuario {
+public class Usuario {
 
   private final String salt = "+@351";
   private String contraHasheada;
@@ -16,8 +16,6 @@ public abstract class Usuario {
   private UltimoIntento ultimoAcceso;
   private Boolean validado;
   private ArrayList<CriterioValidacion> validadoresContrasenia;
-  
-
 
   // CONSTRUCTORES
   public Usuario(String username,String email,String contra,boolean validado) {

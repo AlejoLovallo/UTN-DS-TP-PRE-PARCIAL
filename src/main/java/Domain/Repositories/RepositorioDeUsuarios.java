@@ -1,7 +1,7 @@
 package Domain.Repositories;
 
-import Negocio.Usuario.Usuario;
-import repositories.daos.DAO;
+import Domain.Usuarios.Usuario;
+import Domain.Repositories.Handlers.DbHandler;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,10 +9,10 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 
-public class RepositorioDeUsuarios {
+public class RepositorioDeUsuarios extends Repositorio<Usuario>{
 
-  public RepositorioDeUsuarios(DAO<Usuario> dao) {
-    super(dao);
+  public RepositorioDeUsuarios(DbHandler<Usuario> handler) {
+    super(handler);
   }
 
   public Boolean existe(String nombreDeUsuario, String contrasenia){
@@ -20,7 +20,7 @@ public class RepositorioDeUsuarios {
   }
 
   public Usuario buscarUsuario(String nombreDeUsuario, String contrasenia){
-    return this.dao.buscar(condicionUsuarioYContrasenia(nombreDeUsuario, contrasenia));
+    return this.handler.buscar(condicionUsuarioYContrasenia(nombreDeUsuario, contrasenia));
   }
 
   private BusquedaCondicional condicionUsuarioYContrasenia(String nombreDeUsuario, String contrasenia){
