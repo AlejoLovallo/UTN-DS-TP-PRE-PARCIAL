@@ -14,11 +14,13 @@ public class FutbolistaObserver implements Observer {
   }
 
   public void update(){
+  }
+/**  public void update(){
     Estado estado = this.equipo.getEstado();
     switch (estado){
       case ...
     }
   }
-
+**/
 }
 
