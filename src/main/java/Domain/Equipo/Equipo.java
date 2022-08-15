@@ -1,30 +1,35 @@
 package Domain.Equipo;
+import Domain.BaseDeDatos.EntidadPersistente;
 import Domain.Empleado.*;
 import Domain.Entrenamiento.Entrenamiento;
 import Domain.Usuarios.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 
-public class Equipo {
+@Entity
+@Table(name="Equipo")
+public class Equipo extends EntidadPersistente {
+    @Column
     private String nombre;
+    @Column
     private String pais;
+    @Column
     private String ciudad;
+
     private ArrayList<Empleado> empleados;
     private ArrayList<Entrenamiento> entrenamientos;
     private Estado estado;
     private Usuario usuario;
+    @Transient
     private ArrayList <Observer> observers;
 
     // CONSTRUCTOR
 
-    public Equipo(String nombre, String pais, String ciudad, ArrayList<Empleado> empleados,
-            ArrayList<Entrenamiento> entrenamientos, Estado estado, Usuario usuario) {
-        this.nombre = nombre;
-        this.pais = pais;
-        this.ciudad = ciudad;
-        this.empleados = empleados;
-        this.entrenamientos = entrenamientos;
-        this.estado = estado;
-        this.usuario = usuario;
+    public Equipo() {
     }
 
     // GETTERS
@@ -93,8 +98,14 @@ public class Equipo {
 
     // METHODS
 
-    public void crearEmpleado(Empleado empleado){
-        // Clone
+    /**
+     * ADD PARAMS TO CREATE SET EMPLEADO
+     * @param _empleado
+     */
+    public void crearEmpleado(String _empleado, String nombre,String apellido, String nacionalidad, Integer edad, Equipo equipo){
+        Empleado empleado = EmpleadoStore.getEmpleado(_empleado);
+        empleado.initialize(nombre,apellido,nacionalidad,edad,equipo);
+        this.empleados.add(empleado);
     }
 
     public void cargarPlantel (ArrayList <Futbolista> futbolistas){

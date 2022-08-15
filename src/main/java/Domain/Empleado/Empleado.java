@@ -9,7 +9,20 @@ public abstract class Empleado implements Cloneable{
     private Integer edad;
     private Equipo equipo;
 
+    protected String employeeName;
+
     // CONSTRUCTOR
+    public Empleado(){
+
+    }
+
+    public void initialize(String _nombre,String _apellido, String _nacionalidad, Integer _edad, Equipo _equipo){
+        this.nombre = _nombre;
+        this.apellido = _apellido;
+        this.nacionalidad = _nacionalidad;
+        this.edad = _edad;
+        this.equipo = _equipo;
+    }
 
     public Object clone() {
         Object clone = null;
@@ -44,6 +57,10 @@ public abstract class Empleado implements Cloneable{
 
     public Equipo getEquipo() {
         return equipo;
+    }
+
+    public String getTipoEmpleado(){
+        return this.employeeName;
     }
 
     // SETTERS

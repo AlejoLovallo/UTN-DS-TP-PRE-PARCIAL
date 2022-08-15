@@ -19,6 +19,10 @@ public class Futbolista extends Empleado implements Observer {
         this.entrenamientosPersonales = entrenamientosPersonales;
     }
 
+    public Futbolista(){
+        this.employeeName = "Futbolista";
+    }
+
     // GETTERS
 
     public Double getAltura() {
