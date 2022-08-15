@@ -1,17 +1,34 @@
 package Domain.Entrenamiento;
 
-import java.util.ArrayList;
+import Domain.BaseDeDatos.EntidadPersistente;
 
-public class Entrenamiento{
-    
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name="Entrenamiento")
+public class Entrenamiento extends EntidadPersistente {
+
+    @Enumerated(EnumType.STRING)
     private TipoDeEntrenamiento tipoDeEntrenamiento;
-    private ArrayList<Ejercicio> ejercicios;
+
+    @ManyToMany(cascade =
+        {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.REFRESH,
+            CascadeType.PERSIST
+        }, fetch = FetchType.LAZY)
+    @JoinTable(name = "entrenamiento_x_ejercicio",
+               joinColumns = @JoinColumn(name = "entrenamiento_id"),
+                inverseJoinColumns = @JoinColumn (name = "ejercicio_id")
+    )
+    private List<Ejercicio> ejercicios;
 
     // CONSTRUCTOR
 
-    public Entrenamiento(TipoDeEntrenamiento tipoDeEntrenamiento, ArrayList<Ejercicio> ejercicios) {
-        this.tipoDeEntrenamiento = tipoDeEntrenamiento;
-        this.ejercicios = ejercicios;
+    public Entrenamiento() {
     }
 
     // GETTERS
@@ -19,7 +36,7 @@ public class Entrenamiento{
     public TipoDeEntrenamiento getTipoDeEntrenamiento() {
         return tipoDeEntrenamiento;
     }
-    public ArrayList<Ejercicio> getEjercicios() {
+    public List<Ejercicio> getEjercicios() {
         return ejercicios;
     }
  
