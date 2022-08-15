@@ -5,7 +5,7 @@ import Domain.Repositories.Handlers.*;
 
 import java.util.HashMap;
 
-public class RepositorioFactory {
+public class FactoryRepositorio {
   private static HashMap<String, Repositorio> repos;
 
   static {
