@@ -24,6 +24,7 @@ public class Equipo extends EntidadPersistente {
     private ArrayList<Entrenamiento> entrenamientos;
     private Estado estado;
     private Usuario usuario;
+
     @Transient
     private ArrayList <Observer> observers;
 

@@ -20,6 +20,11 @@ public class Ejercicio extends EntidadPersistente {
     public Ejercicio() {
     }
 
+    public Ejercicio(String _nombre, Double _duracion){
+        this.nombre = _nombre;
+        this.duracion = _duracion;
+    }
+
     // GETTERS
 
     public String getNombre() {
