@@ -4,25 +4,40 @@ import Domain.Empleado.*;
 import Domain.Entrenamiento.Entrenamiento;
 import Domain.Usuarios.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
 @Table(name="Equipo")
 public class Equipo extends EntidadPersistente {
+    
     @Column
     private String nombre;
+
     @Column
     private String pais;
+
     @Column
     private String ciudad;
 
+    @OneToMany(mappedBy = "equipoDelEmpleado",cascade = {CascadeType.ALL})
     private ArrayList<Empleado> empleados;
+
+    @ManyToMany(cascade =
+            {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST
+            }, fetch = FetchType.LAZY)
+    @JoinTable(name = "entrenamiento_x_equipo",joinColumns = @JoinColumn(name = "equipo_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientos;
+
+    @Column
     private Estado estado;
+
+    @OneToOne
+	@JoinColumn(name="usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     @Transient

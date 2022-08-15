@@ -2,12 +2,11 @@ package Domain.Entrenamiento;
 
 import Domain.BaseDeDatos.EntidadPersistente;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Ejercicio")
+
 public class Ejercicio extends EntidadPersistente {
 
     @Column

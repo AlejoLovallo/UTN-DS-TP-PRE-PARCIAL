@@ -1,14 +1,29 @@
 package Domain.Empleado;
 
 import Domain.Entrenamiento.*;
-import Domain.Equipo.Observer;
 import java.util.ArrayList;
 
+import javax.persistence.*;
 
-public class Futbolista extends Empleado implements Observer {
+@Entity
+@Table(name="Futbolista")
 
+public class Futbolista extends Empleado {
+
+    @Column
     private Double altura;
+
+    @Column
     private Double peso;
+
+    @ManyToMany(cascade =
+            {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST
+            }, fetch = FetchType.LAZY)
+    @JoinTable(name = "entrenamiento_x_futbolista",joinColumns = @JoinColumn(name = "futbolista_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientosPersonales;
 
     // CONSTRUCTOR
@@ -57,11 +72,5 @@ public class Futbolista extends Empleado implements Observer {
         this.entrenamientosPersonales.add(_entrenamiento);
     }
     
-    public void update(){
-        for (Entrenamiento entrenamiento : this.getEntrenamientosPersonales()){
-            for (Ejercicio ejercicio : entrenamiento.getEjercicios()){
-                ejercicio.aumentarDuracionEjercicio(5.0);
-            }
-        };
-    }
+   
 }

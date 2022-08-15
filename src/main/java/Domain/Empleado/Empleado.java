@@ -1,15 +1,40 @@
 package Domain.Empleado;
+
 import Domain.Equipo.Equipo;
+import Domain.Usuarios.*;
 
-public abstract class Empleado implements Cloneable{
+import Domain.BaseDeDatos.EntidadPersistente;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="Empleado")
+
+public abstract class Empleado extends EntidadPersistente implements Cloneable {
+
+    @Column
     private String nombre;
+
+    @Column
     private String apellido;
+
+    @Column
     private String nacionalidad;
+
+    @Column
     private Integer edad;
+
+    @ManyToOne
+	@JoinColumn(name="equipo_id", referencedColumnName = "id")
     private Equipo equipo;
 
-    protected String employeeName;
+    @OneToOne
+	@JoinColumn(name="usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+
+    @Column
+    protected String employeeName; // ??
 
     // CONSTRUCTOR
     public Empleado(){

@@ -1,12 +1,26 @@
 package Domain.Entrada;
 
-public abstract class EntradaDecorator implements Entrada {
+import Domain.BaseDeDatos.EntidadPersistente;
+
+public abstract class EntradaDecorator extends EntidadPersistente implements Entrada {
     
     private Entrada entrada;
 
     // CONSTRUCTOR
 
-    public EntradaDecorator(Entrada entrada) {
+    public EntradaDecorator(EntradaComun entrada) {
+        this.entrada = entrada;
+    }
+
+    // GETTERS
+
+    public Entrada getEntrada() {
+        return entrada;
+    }
+
+    // SETTERS
+
+    public void setEntrada(Entrada entrada) {
         this.entrada = entrada;
     }
 

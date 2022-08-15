@@ -1,6 +1,6 @@
 package Domain.Equipo;
 
-import Domain.Entrenamiento.*;;
+import Domain.Entrenamiento.*;
 
 public class EstadoAmarillo extends Estado {
 

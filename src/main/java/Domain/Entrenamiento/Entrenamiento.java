@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Entrenamiento")
+
 public class Entrenamiento extends EntidadPersistente {
 
     @Enumerated(EnumType.STRING)
