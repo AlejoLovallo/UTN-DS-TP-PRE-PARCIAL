@@ -1,7 +1,6 @@
 package Domain.Empleado;
 
 import Domain.Equipo.Equipo;
-import Domain.Equipo.Observer;
 import Domain.Entrenamiento.*;
 
 public class FutbolistaObserver implements Observer {

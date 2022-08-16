@@ -1,4 +1,4 @@
-package Domain.Equipo;
+package Domain.Empleado;
 
 public interface Observer {
     public  void update();

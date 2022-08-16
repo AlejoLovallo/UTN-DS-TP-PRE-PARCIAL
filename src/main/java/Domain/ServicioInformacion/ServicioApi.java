@@ -9,6 +9,7 @@ public class ServicioApi {
   private static String apiKey;
   private static String APP_URL = "https://api-football-beta.p.rapidapi.com/";
   private Retrofit retrofit;
+  private ServicioBusquedaInformacion servicioBusquedaInformacion;
 
   private ServicioApi(){
     this.retrofit = new Retrofit.Builder()
@@ -17,11 +18,20 @@ public class ServicioApi {
         .build();
   }
 
+  public ServicioBusquedaInformacion getServicioBusquedaInformacion(){
+    return servicioBusquedaInformacion;
+  }
+
+  public void setServicioBusquedaInformacion(ServicioBusquedaInformacion servicioBusquedaInformacion){
+    this.servicioBusquedaInformacion = servicioBusquedaInformacion;
+  }
+
+
   protected Retrofit getRetrofit(){
     return retrofit;
   }
 
-  protected String getApiKey(){
+  public String getApiKey(){
     return apiKey;
   }
 

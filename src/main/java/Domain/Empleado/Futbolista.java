@@ -1,9 +1,11 @@
 package Domain.Empleado;
 
 import Domain.Entrenamiento.*;
+import Domain.ServicioInformacion.ServicioApi;
 import Domain.ServicioInformacion.ServicioFutbolista;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.persistence.*;
 
@@ -28,7 +30,7 @@ public class Futbolista extends Empleado {
     @JoinTable(name = "entrenamiento_x_futbolista",joinColumns = @JoinColumn(name = "futbolista_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientosPersonales;
 
-    ServicioFutbolista servicio;
+    ServicioApi servicio;
 
     // CONSTRUCTOR
     
@@ -91,7 +93,7 @@ public class Futbolista extends Empleado {
     }
 
     public int cantGolesEnTemporada(){
-        return servicio.buscarInformacion(this.getNombre());
+        return servicio.getServicioBusquedaInformacion().buscarInformacion(Optional.of(this.getNombre()));
     }
     
    
