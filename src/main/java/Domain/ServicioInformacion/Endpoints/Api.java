@@ -2,6 +2,7 @@ package Domain.ServicioInformacion.Endpoints;
 
 import Domain.ServicioInformacion.Endpoints.EquipoStat.EquipoStatResponse;
 import Domain.ServicioInformacion.Endpoints.Equipos.TeamsResponse;
+import Domain.ServicioInformacion.Endpoints.Futbolista.Response;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -28,6 +29,22 @@ public interface Api {
                                              @Query("team") String team,
                                              @Query("season") String season,
                                              @Query("league") String league
+  );
+
+  //"https://api-football-beta.p.rapidapi.com/players?season=2021&league=39&page=2"
+  @GET("players")
+  Call<Response> futbolistas(@Header("X-RapidAPI-Key") String apiKey,
+                             @Query("season") String season,
+                             @Query("league") String league,
+                             @Query("page") String page
+  );
+
+  @GET("players")
+  Call<Response> futbolista(@Header("") String apiKey,
+                            @Query("season") String season,
+                            @Query("league") String league,
+                            @Query("id") String playerId
+
   );
 
 }
