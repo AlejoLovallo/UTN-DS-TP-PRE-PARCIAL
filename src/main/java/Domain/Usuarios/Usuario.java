@@ -1,20 +1,43 @@
 package Domain.Usuarios;
 
+import Domain.BaseDeDatos.EntidadPersistente;
 import Domain.Usuarios.Excepciones.ContraseniaEsInvalidaException;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+@Entity
+@Table(name="Usuario")
+public class Usuario extends EntidadPersistente {
 
-public class Usuario {
-
+  @Transient
   private final String salt = "+@351";
+
+  @Column
   private String contraHasheada;
+
+  @Column
   private String username;
+
+  @Column
   private String email;
-  private UltimoIntento ultimoAcceso;
+
+  @Transient
+  private UltimoIntento ultimoIntento;
+
+  /**
+   * Preguntar SI ESTE TIPO DE DATO REALMENTE LO NECESITA O NO
+   */
+  @Transient
   private Boolean validado;
+
+  @Transient
   private ArrayList<CriterioValidacion> validadoresContrasenia;
 
   // CONSTRUCTORES
@@ -26,9 +49,11 @@ public class Usuario {
     this.contraHasheada = generateHash(contra);
     this.username = username;
     this.email = email;
-    this.ultimoAcceso = new UltimoIntento();
+    this.ultimoIntento = new UltimoIntento();
     //this.contacto = contacto;
   }
+
+  public Usuario(){}
 
   //////////////////////////////////  GETTERS
   public boolean isValido(){
@@ -60,7 +85,7 @@ public class Usuario {
   }
 
   public boolean intentoAcceso(){
-    return this.ultimoAcceso.validar_acceso();
+    return this.ultimoIntento.validar_acceso();
   }
 
   private boolean isContraseniaValida(String contra){

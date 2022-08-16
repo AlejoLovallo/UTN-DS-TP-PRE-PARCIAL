@@ -11,7 +11,8 @@ public interface Api {
   Call<TeamsResponse> equipos(@Header("X-RapidAPI-Key") String apiKey,
                               @Query("league") String league,
                               @Query("season") String season,
-                              @Query("country")String country
+                              @Query("country")String country,
+                              @Query("name") String name
   );
 
   //https://api-football-beta.p.rapidapi.com/teams/statistics?team=33&season=2021&league=39
