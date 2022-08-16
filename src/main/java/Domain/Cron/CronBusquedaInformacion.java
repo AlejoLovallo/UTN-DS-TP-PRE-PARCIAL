@@ -1,6 +1,10 @@
 package Domain.Cron;
 
-import Domain.Equipo.RepositorioEquipos;
+import Domain.Equipo.*;
+import Domain.Repositories.RepositorioDeEquipos;
+import Domain.Repositories.Factories.FactoryRepositorioEquipos;
+import Domain.ServicioInformacion.ServicioEquipo;
+
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -10,6 +14,9 @@ import java.util.concurrent.CountDownLatch;
 
 public class CronBusquedaInformacion implements Job {
   private static int count = 0;
+
+  private RepositorioDeEquipos repoEquipos = FactoryRepositorioEquipos.get();
+  private ServicioEquipo servicioEquipo;
 
   @Override
   public void execute(JobExecutionContext jobContext) throws JobExecutionException {
@@ -26,8 +33,15 @@ public class CronBusquedaInformacion implements Job {
     Logger.getInstance().loggearCron("Proxima ejecucion: " + jobContext.getNextFireTime());
     Logger.getInstance().loggearCron("--------------------------------------------------------------------");
 
-    //TODO agregar busqueda de informacion
+    //Busqueda de informacion
     
+    for (Equipo equipo : this.repoEquipos.buscarTodos()) {
+      Estado estado = servicioEquipo.buscarInfoEquipo(equipo.getNombre());
+      equipo.setEstado(estado);
+      equipo.getEstado().modificarEntrenamiento();
+      equipo.notificarObservers();
+    }
+
 
     //aca uso el jobdatamap con mis objetos de negocio
     CountDownLatch contadorSincronico = (CountDownLatch) jobDetail.getJobDataMap().get("contadorSincronico");

@@ -1,6 +1,8 @@
 package Domain.Empleado;
 
 import Domain.Entrenamiento.*;
+import Domain.ServicioInformacion.ServicioFutbolista;
+
 import java.util.ArrayList;
 
 import javax.persistence.*;
@@ -25,6 +27,8 @@ public class Futbolista extends Empleado {
             }, fetch = FetchType.LAZY)
     @JoinTable(name = "entrenamiento_x_futbolista",joinColumns = @JoinColumn(name = "futbolista_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientosPersonales;
+
+    ServicioFutbolista servicio;
 
     // CONSTRUCTOR
     
@@ -70,6 +74,10 @@ public class Futbolista extends Empleado {
 
     public void altaEntrenamiento(Entrenamiento _entrenamiento){
         this.entrenamientosPersonales.add(_entrenamiento);
+    }
+
+    public int cantGolesEnTemporada(){
+        return servicio.buscarInformacion();
     }
     
    

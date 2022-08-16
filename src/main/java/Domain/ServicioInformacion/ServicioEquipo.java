@@ -21,8 +21,8 @@ public class ServicioEquipo extends ServicioBusquedaInformacion{
   public void buscarInformacion() throws IOException {
     Api apiService = this.servicioApi.getRetrofit().create(Api.class);
     
-    Call<TeamsResponse> requestEngland = apiService.equipos(this.servicioApi.getApiKey(),"39","2021","England");
-    Call<TeamsResponse> requestItaly = apiService.equipos(this.servicioApi.getApiKey(),"135","2021","Italy");
+    Call<TeamsResponse> requestEngland = apiService.equipos(this.servicioApi.getApiKey(),"39","2022","England");
+    Call<TeamsResponse> requestItaly = apiService.equipos(this.servicioApi.getApiKey(),"135","2022","Italy");
     Response<TeamsResponse> responseEngland = requestEngland.execute();
     Response<TeamsResponse> responseItaly = requestItaly.execute();
 
