@@ -8,12 +8,17 @@ import Domain.Equipo.Equipo;;
 public abstract class Torneo {
 
     private String nombre;
+    private int año;
     private ArrayList <Equipo> equipos;
 
     // GETTERS
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getAño() {
+        return año;
     }
 
     public ArrayList<Equipo> getEquipos() {
@@ -28,6 +33,10 @@ public abstract class Torneo {
     
     public void setEquipos(ArrayList<Equipo> equipos) {
         this.equipos = equipos;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
     }
 
     // METHODS
