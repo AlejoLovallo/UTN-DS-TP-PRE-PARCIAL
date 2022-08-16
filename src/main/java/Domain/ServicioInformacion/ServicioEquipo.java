@@ -46,7 +46,7 @@ public class ServicioEquipo extends ServicioBusquedaInformacion{
     }
   }
 
-  public void buscarInfoEquipo(String nombreEquipo) throws IOException{
+  public String buscarInfoEquipo(String nombreEquipo) throws IOException{
     buscarInformacion(Optional.of(nombreEquipo));
     Team equipo = UltimoEquipoBuscado.getInstance().getTeam();
 
@@ -78,6 +78,16 @@ public class ServicioEquipo extends ServicioBusquedaInformacion{
     System.out.println(perdidos.toString());
 
     System.out.println("--------------------------------------");
+
+    int partidosTotales = ganados.getTotal() + empatados.getTotal() + perdidos.getTotal();
+
+    if(ganados.getTotal() * 100 / partidosTotales >= 60){
+      return "Verde";
+    } else if (ganados.getTotal() * 100 / partidosTotales < 60 && ganados.getTotal() * 100 / partidosTotales >= 30){
+      return "Amarillo";
+    }else{
+      return "Rojo";
+    }
   }
 
   public static void main(String[] args) throws IOException {

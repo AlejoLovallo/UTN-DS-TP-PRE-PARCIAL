@@ -35,9 +35,28 @@ public class CronBusquedaInformacion implements Job {
 
     //Busqueda de informacion
     
+    EstadoVerde estadoVerde = new EstadoVerde();
+    EstadoAmarillo estadoAmarillo = new EstadoAmarillo();
+    EstadoRojo estadoRojo = new EstadoRojo();
+
     for (Equipo equipo : this.repoEquipos.buscarTodos()) {
-      Estado estado = servicioEquipo.buscarInfoEquipo(equipo.getNombre());
-      equipo.setEstado(estado);
+      String estado = servicioEquipo.buscarInfoEquipo(equipo.getNombre());
+
+      switch(estado){
+        case "Verde":
+          equipo.setEstado();
+          break;
+
+        case "Amarillo":
+          equipo.setEstado(new EstadoAm);
+          break;
+
+        case "Rojo":
+          equipo.setEstado(new EstadoAm);
+          break;
+
+      }
+
       equipo.getEstado().modificarEntrenamiento();
       equipo.notificarObservers();
     }

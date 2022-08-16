@@ -2,6 +2,9 @@ package Domain.Empleado;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="Futbolista")
+
 public class Entrenador extends Empleado {
   private String matricula;
 
