@@ -3,6 +3,7 @@ import Domain.BaseDeDatos.EntidadPersistente;
 import Domain.Empleado.*;
 import Domain.Entrenamiento.Entrenamiento;
 import Domain.Usuarios.*;
+import Domain.Socio.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Equipo extends EntidadPersistente {
     @Column
     private String ciudad;
 
-    @OneToMany(mappedBy = "equipoDelEmpleado",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "empleadosDelEquipo",cascade = {CascadeType.ALL})
     private ArrayList<Empleado> empleados;
 
     @ManyToMany(cascade =
@@ -32,6 +33,9 @@ public class Equipo extends EntidadPersistente {
             }, fetch = FetchType.LAZY)
     @JoinTable(name = "entrenamiento_x_equipo",joinColumns = @JoinColumn(name = "equipo_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientos;
+    
+    @OneToMany(mappedBy = "sociosDelEquipo",cascade = {CascadeType.ALL})
+    private ArrayList <Socio> socios;
 
     @Column
     private Estado estado;
@@ -70,6 +74,10 @@ public class Equipo extends EntidadPersistente {
         return entrenamientos;
     }
 
+    public ArrayList<Socio> socios() {
+        return socios;
+    }
+
     public Estado getEstado() {
         return estado;
     }
@@ -104,6 +112,10 @@ public class Equipo extends EntidadPersistente {
         this.entrenamientos = entrenamientos;
     }
 
+    public void setSocios(ArrayList<Socio> socios) {
+        this.socios = socios;
+    }
+
     public void setEstado(Estado estado) {
         this.estado = estado;
         notificarObservers();
@@ -123,10 +135,23 @@ public class Equipo extends EntidadPersistente {
         Empleado empleado = EmpleadoStore.getEmpleado(_empleado);
         empleado.initialize(nombre,apellido,nacionalidad,edad,equipo);
         this.empleados.add(empleado);
+
+        if (empleado instanceof Futbolista){
+            new FutbolistaObserver(this, (Futbolista) empleado);
+        }
     }
 
-    public void cargarPlantel (ArrayList <Futbolista> futbolistas){
-        // Clone
+    public void echarEmpleado(Empleado empleado){
+        this.empleados.remove(empleado);
+    }
+
+
+    public void altaSocio(Socio socio){
+        this.socios.add(socio);
+    }
+
+    public void bajaSocio (Socio socio){
+        this.socios.remove(socio);
     }
 
     public ArrayList <Futbolista> getFutbolistas(){
@@ -142,12 +167,35 @@ public class Equipo extends EntidadPersistente {
 
     }
 
-    public void altaEntrenamiento (Entrenamiento entrenamiento){
-        this.getEntrenamientos().add(entrenamiento);
+    public Double duracionEntrenamientos(){
+        Double duracion = 0.0;
+        for(Entrenamiento entrenamiento : this.getEntrenamientos()){
+            duracion += entrenamiento.duracionEntrenamiento();
+        }
+        return duracion;
     }
 
-    public void obtenerEstadisticasEstado(){
+    public void altaEntrenamiento(Entrenamiento _entrenamiento){
+        
+        if((this.duracionEntrenamientos() + _entrenamiento.duracionEntrenamiento()) <= 360){
+            this.entrenamientos.add(_entrenamiento);
+        }else{
+            System.out.println("No se puede agregar el entrenamiento. La duracion total excede las 4 horas diarias");
+        }
+           
+    }
 
+    public Double calcularPromedioEdadPlantel(){
+        Double promedio = 0.0;
+        
+
+        for(Futbolista futbolista: this.getFutbolistas()){
+            promedio += futbolista.getEdad();
+        }
+
+        promedio = promedio / this.getFutbolistas().size();
+
+        return promedio;
     }
 
     public void addObserver(Observer obj) {

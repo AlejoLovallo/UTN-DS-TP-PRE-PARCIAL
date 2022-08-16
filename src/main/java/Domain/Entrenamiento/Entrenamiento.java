@@ -32,7 +32,27 @@ public class Entrenamiento extends EntidadPersistente {
     public Entrenamiento() {
     }
 
+    
+
     // GETTERS
+
+    public Entrenamiento(TipoDeEntrenamiento tipoDeEntrenamiento, List<Ejercicio> ejercicios) {
+        this.tipoDeEntrenamiento = tipoDeEntrenamiento;
+        
+        Double duracion = 0.0;
+        for(Ejercicio ejercicio : ejercicios){
+            duracion += ejercicio.getDuracion();
+        }
+
+        if (duracion < 2.0){
+            this.ejercicios = ejercicios;
+        }else{
+            System.out.println("No se puede crear el entrenamiento. La duracion excede las 2");
+        }
+        
+    }
+
+
 
     public TipoDeEntrenamiento getTipoDeEntrenamiento() {
         return tipoDeEntrenamiento;
@@ -51,5 +71,14 @@ public class Entrenamiento extends EntidadPersistente {
     }
 
     // METHODS
+
+    public Double duracionEntrenamiento(){
+        Double duracion = 0.0;
+        for(Ejercicio ejercicio : this.getEjercicios()){
+            duracion += ejercicio.getDuracion();
+        }
+
+        return duracion;
+    }
 
 }

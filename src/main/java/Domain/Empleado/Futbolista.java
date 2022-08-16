@@ -28,7 +28,7 @@ public class Futbolista extends Empleado {
     @JoinTable(name = "entrenamiento_x_futbolista",joinColumns = @JoinColumn(name = "futbolista_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientosPersonales;
 
-    //ServicioFutbolista servicio;
+    ServicioFutbolista servicio;
 
     // CONSTRUCTOR
     
@@ -72,13 +72,27 @@ public class Futbolista extends Empleado {
 
     // METHODS
 
-    public void altaEntrenamiento(Entrenamiento _entrenamiento){
-        this.entrenamientosPersonales.add(_entrenamiento);
+    public Double duracionEntrenamientos(){
+        Double duracion = 0.0;
+        for(Entrenamiento entrenamiento : this.getEntrenamientosPersonales()){
+            duracion += entrenamiento.duracionEntrenamiento();
+        }
+        return duracion;
     }
 
-    /*public int cantGolesEnTemporada(){
-        return servicio.buscarInformacion();
-    }*/
+    public void altaEntrenamiento(Entrenamiento _entrenamiento){
+        
+        if((this.duracionEntrenamientos() + _entrenamiento.duracionEntrenamiento()) <= 240){
+            this.entrenamientosPersonales.add(_entrenamiento);
+        }else{
+            System.out.println("No se puede agregar el entrenamiento. La duracion total excede las 4 horas diarias");
+        }
+           
+    }
+
+    public int cantGolesEnTemporada(){
+        return servicio.buscarInformacion(this.getNombre());
+    }
     
    
 }
