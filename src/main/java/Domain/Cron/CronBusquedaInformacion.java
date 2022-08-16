@@ -52,7 +52,6 @@ public class CronBusquedaInformacion implements Job {
 
       estado = ((ServicioEquipo) servicio.getServicioBusquedaInformacion()).buscarInfoEquipo(equipo.getNombre());
 
-    
 
       switch(estado){
         case "Verde":
