@@ -24,16 +24,8 @@ public class TeamsResponse {
     return parameters;
   }
 
-  public void setParameters(Parameters parameters) {
-    this.parameters = parameters;
-  }
-
   public List<Object> getErrors() {
     return errors;
-  }
-
-  public void setErrors(List<Object> errors) {
-    this.errors = errors;
   }
 
   public Integer getResults() {
@@ -48,15 +40,8 @@ public class TeamsResponse {
     return paging;
   }
 
-  public void setPaging(Paging paging) {
-    this.paging = paging;
-  }
-
   public List<EquipoResponse> getResponse() {
     return response;
   }
 
-  public void setResponse(List<EquipoResponse> response) {
-    this.response = response;
-  }
 }

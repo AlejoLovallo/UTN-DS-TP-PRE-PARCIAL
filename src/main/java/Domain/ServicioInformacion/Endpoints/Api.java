@@ -8,11 +8,18 @@ import retrofit2.http.*;
 public interface Api {
   @GET("teams")
   //"https://api-football-beta.p.rapidapi.com/teams?league=39&season=2021&country=England"
-  Call<TeamsResponse> equipos(@Header("X-RapidAPI-Key") String apiKey,
+  Call<TeamsResponse> equipo(@Header("X-RapidAPI-Key") String apiKey,
                               @Query("league") String league,
                               @Query("season") String season,
                               @Query("country")String country,
                               @Query("name") String name
+  );
+
+  @GET("teams")
+  Call<TeamsResponse> equipos(@Header("X-RapidAPI-Key") String apiKey,
+                             @Query("league") String league,
+                             @Query("season") String season,
+                             @Query("country")String country
   );
 
   //https://api-football-beta.p.rapidapi.com/teams/statistics?team=33&season=2021&league=39

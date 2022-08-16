@@ -35,12 +35,12 @@ public class CronBusquedaInformacion implements Job {
 
     //Busqueda de informacion
     
-    for (Equipo equipo : this.repoEquipos.buscarTodos()) {
+    /*for (Equipo equipo : this.repoEquipos.buscarTodos()) {
       Estado estado = servicioEquipo.buscarInfoEquipo(equipo.getNombre());
       equipo.setEstado(estado);
       equipo.getEstado().modificarEntrenamiento();
       equipo.notificarObservers();
-    }
+    }*/
 
 
     //aca uso el jobdatamap con mis objetos de negocio

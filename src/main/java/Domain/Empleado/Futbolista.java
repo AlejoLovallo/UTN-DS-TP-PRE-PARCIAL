@@ -1,7 +1,7 @@
 package Domain.Empleado;
 
 import Domain.Entrenamiento.*;
-import Domain.ServicioInformacion.ServicioFutbolista;
+//import Domain.ServicioInformacion.ServicioFutbolista;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class Futbolista extends Empleado {
     @JoinTable(name = "entrenamiento_x_futbolista",joinColumns = @JoinColumn(name = "futbolista_id"),inverseJoinColumns = @JoinColumn (name = "entrenamiento_id"))
     private ArrayList<Entrenamiento> entrenamientosPersonales;
 
-    ServicioFutbolista servicio;
+    //ServicioFutbolista servicio;
 
     // CONSTRUCTOR
     
@@ -76,9 +76,9 @@ public class Futbolista extends Empleado {
         this.entrenamientosPersonales.add(_entrenamiento);
     }
 
-    public int cantGolesEnTemporada(){
+    /*public int cantGolesEnTemporada(){
         return servicio.buscarInformacion();
-    }
+    }*/
     
    
 }
